@@ -2,6 +2,7 @@
 
 *** Settings ***
 Library    SeleniumLibrary
+Library    ../../.venv/Lib/site-packages/robot/libraries/String.py
 Resource    Main.resource
 
 *** Variables ***
@@ -12,6 +13,7 @@ Resource    Main.resource
 ...    speakerLink=//div[@id="speakersImg"]
 ...    logOutLink=//label[@ng-click="signOut($event)"]
 ...    shoppingCartIcon=//a[@id="shoppingCartLink"]/span[@class="cart ng-binding"]
+...    showProductIcon=//p[text()="PRODUCT_NAME"]
 
 *** Keywords ***
 executa acao ate o sucesso    
@@ -37,9 +39,15 @@ sou desconectado do site
 expandir barra de busca
     Wait Until Keyword Succeeds    10    1    Click Element     ${HomePage.searchButton}
 
+# buscar produto
+#     [Arguments]    ${PRODUTO}
+#     Input Text     ${HomePage.inputSearchField}    ${PRODUTO}
+#     Wait Until Element Is Visible    //p[text()="${PRODUTO}"]
+#     Wait Until Keyword Succeeds    15    1    Click Element    //p[text()="${PRODUTO}"]
+
 buscar produto
     [Arguments]    ${PRODUTO}
     Input Text     ${HomePage.inputSearchField}    ${PRODUTO}
-    Wait Until Element Is Visible    //p[text()="${PRODUTO}"]
-    Wait Until Keyword Succeeds    15    1    Click Element    //p[text()="${PRODUTO}"]
-
+    ${produtoXPATH}    Replace String    ${HomePage.showProductIcon}    PRODUCT_NAME    ${PRODUTO}
+    Wait Until Element Is Visible    ${produtoXPATH}
+    Wait Until Keyword Succeeds    15    1    Click Element    ${produtoXPATH}

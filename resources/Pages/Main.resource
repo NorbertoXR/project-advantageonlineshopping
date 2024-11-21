@@ -24,7 +24,10 @@ carregar site advantagesOnlineShopping e logar
     Maximize Browser Window
     estou logado    ${USERNAME}    ${$PASSWORD}
 
+fechar browser
+    Close Browser
+
 fechar site advantagesOnlineShopping
-    #click em Logout
-    #sou desconectado do site
+    click em Logout
+    sou desconectado do site
     Close Browser
