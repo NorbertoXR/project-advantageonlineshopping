@@ -10,12 +10,21 @@ Resource    ShoppingCart.resource
 Resource    OrderPAyment.resource
 
 *** Variables ***
-#${env}    Load Json From File    ../../data/advantagesonlineshopping.json
+${env}    ${CURDIR}/../data/advantagesonlineshopping.json
 #${siteURL}    Get Value From Json    ${env}    $url
 *** Keywords ***
+carregar arquivo ambiente
+    [Arguments]    ${PATH}
+    ${json}    Load Json From File    ${PATH}
+    RETURN   ${json} 
+
 carregar site advantagesOnlineShopping
-    [Arguments]    ${URL}    ${BROWSER}
-    Open Browser    ${URL}    ${BROWSER}
+    #[Arguments]    ${URL}    ${BROWSER}
+
+    ${json}    carregar arquivo ambiente    ${env}
+    ${url}    Get Value From Json    json_object=${json}    json_path=$.url
+    ${browser}    Get Value From Json    json_object=${json}    json_path=$.browser
+    Open Browser    ${url}[0]    ${browser}[0]
     Maximize Browser Window
 
 carregar site advantagesOnlineShopping e logar

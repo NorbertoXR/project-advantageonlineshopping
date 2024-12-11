@@ -5,7 +5,7 @@ Resource    ../resources/Pages/Main.resource
 
 
 
-Test Setup    carregar site advantagesOnlineShopping    https://advantageonlineshopping.com/#/    gc
+Test Setup    carregar site advantagesOnlineShopping    #https://advantageonlineshopping.com/#/    gc
 Test Teardown    fechar site advantagesOnlineShopping
 Library    ../.venv/Lib/site-packages/robot/libraries/OperatingSystem.py
 

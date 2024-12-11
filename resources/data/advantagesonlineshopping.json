@@ -1,0 +1,9 @@
+{
+    "url": "https://advantageonlineshopping.com/#/",
+    "browser": "gc",
+    "delay":{
+        "shortDelay": 5,
+        "midDelay": 15,
+        "longDelay": 30
+    }
+}
